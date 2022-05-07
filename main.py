@@ -7,7 +7,9 @@ import os
 import random
 import datetime
 from gtts import gTTS
+import wikipedia
 import speech_recognition as sr
+
 
 r = sr.Recognizer()
 
@@ -64,7 +66,13 @@ def respond(voice_data):
        if 'play' in voice_data:
            song=voice_data.replace('play','')
            robot_speak('playing'+song)  
-           pywhatkit.playonyt(song)  
+           pywhatkit.playonyt(song) 
+       if 'what' in voice_data:
+          object =voice_data.replace('what','')
+          info=wikipedia.summary(object,5)
+          print(info)
+          robot_speak(info)  
+                
            
        if 'exit' in voice_data:
             exit() 
