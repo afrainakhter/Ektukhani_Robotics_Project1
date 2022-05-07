@@ -3,10 +3,13 @@ from time import ctime
 import time
 import webbrowser
 import playsound
+import pywhatkit
 import os
 import random
 import datetime
 from gtts import gTTS
+
+
 import speech_recognition as sr
 
 r = sr.Recognizer()
@@ -54,6 +57,11 @@ def respond(voice_data):
            url='https://google.nl/maps/place/'+location+ '/&amp;'
            webbrowser.get().open(url)
            robot_speak('here is what you locate for' +location)
+       if 'play' in voice_data:
+           song=voice_data.replace('play','')
+           robot_speak('playing'+song)  
+           pywhatkit.playonyt(song)  
+           
        if 'exit' in voice_data:
             exit() 
 time.sleep(1)
