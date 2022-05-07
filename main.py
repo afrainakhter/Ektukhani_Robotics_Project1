@@ -5,6 +5,7 @@ import webbrowser
 import playsound
 import os
 import random
+import datetime
 from gtts import gTTS
 import speech_recognition as sr
 
@@ -55,7 +56,15 @@ def respond(voice_data):
            robot_speak('here is what you locate for' +location)
        if 'exit' in voice_data:
             exit() 
-time.sleep(1)   
+time.sleep(1)
+currentTime = datetime.datetime.now()   
+currentTime.hour
+if currentTime.hour < 12 :
+     robot_speak('Good morning')
+elif 12 <= currentTime.hour < 18:
+     robot_speak('Good afternoon')
+else :
+     robot_speak('Good evening')
 robot_speak("How can I help You") 
 while 1: 
    voice_data=record_audio()
