@@ -1,4 +1,3 @@
-from cgitb import reset
 from time import ctime
 import time
 import webbrowser
@@ -8,11 +7,13 @@ import os
 import random
 import datetime
 from gtts import gTTS
-
-
 import speech_recognition as sr
 
 r = sr.Recognizer()
+
+
+
+
 def record_audio(ask=False):
     with sr.Microphone()as source:
         if ask:
@@ -27,6 +28,9 @@ def record_audio(ask=False):
         except sr.RequestError:
              robot_speak("Sorry,My speech service down")    
         return voice_data
+    
+    
+    
 def robot_speak(audio_string):
     tts=gTTS(text=audio_string,lang='en')
     r=random.randint(1,10000000)
@@ -64,6 +68,8 @@ def respond(voice_data):
            
        if 'exit' in voice_data:
             exit() 
+            
+            
 time.sleep(1)
 currentTime = datetime.datetime.now()   
 currentTime.hour
@@ -74,6 +80,8 @@ elif 12 <= currentTime.hour < 18:
 else :
      robot_speak('Good evening')
 robot_speak("How can I help You") 
+
+
 while 1: 
    voice_data=record_audio()
    respond(voice_data)
